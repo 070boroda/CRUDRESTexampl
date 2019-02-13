@@ -13,13 +13,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
 @Entity
-@Table (name = "students")
+@Table (name = "student")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Student implements Serializable {
 	

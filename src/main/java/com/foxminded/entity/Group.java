@@ -13,12 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @SuppressWarnings("serial")
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "groups")
 public class Group implements Serializable {
