@@ -9,7 +9,7 @@
 <title>Group Edit</title>
 </head>
 <body>
-	<h1>Edit Student</h1>
+	<h1>Edit Group</h1>
 	<c:url var="urlSave" value="/groupedit?id=${groupAttribute.id}" />
 	<form:form modelAtrribute="groupAttribute"
 		commandName="groupAttribute" method="POST" action="${urlSave}">

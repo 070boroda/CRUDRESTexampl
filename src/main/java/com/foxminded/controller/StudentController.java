@@ -59,5 +59,4 @@ public class StudentController {
 	public ModelAndView viewEditStudent(@RequestParam(value = "id", required = true) Integer id) {
 		return new ModelAndView("studentedit", "studentAttribute", repository.findOne(id));
 	}
-
 }

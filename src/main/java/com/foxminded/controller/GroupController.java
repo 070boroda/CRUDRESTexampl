@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.foxminded.entity.Group;
-import com.foxminded.entity.Student;
 import com.foxminded.repository.GroupRepository;
 
 @Controller
@@ -53,4 +52,3 @@ public class GroupController {
 		return new ModelAndView("groupedit", "groupAttribute", groupRepository.findOne(id));
 	}
 }
-
