@@ -31,7 +31,7 @@ public class Group implements Serializable {
 	@Column(name="group_name")
 	private String groupName;
 	
-	@OneToMany(mappedBy="group", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="group", fetch=FetchType.EAGER)
 	private Set<Student> students = new HashSet<Student>();
 		
 }

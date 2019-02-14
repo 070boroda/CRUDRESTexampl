@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -18,7 +20,6 @@ import org.springframework.web.servlet.view.JstlView;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
@@ -43,6 +44,7 @@ public class DataConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		
 
         dataSource.setDriverClassName(env.getRequiredProperty(PROP_DATABASE_DRIVER));
         dataSource.setUrl(env.getRequiredProperty(PROP_DATABASE_URL));
@@ -55,11 +57,17 @@ public class DataConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		vendorAdapter.setDatabase(Database.POSTGRESQL);
+		vendorAdapter.setGenerateDdl(false);
+		vendorAdapter.setShowSql(true);
+		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+        
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistence.class);
         entityManagerFactoryBean.setPackagesToScan(env.getRequiredProperty(PROP_ENTITYMANAGER_PACKAGES_TO_SCAN));
-
-        entityManagerFactoryBean.setJpaProperties(getHibernateProperties());
+        //entityManagerFactoryBean.setJpaProperties(getHibernateProperties());
         return entityManagerFactoryBean;
     }
 
@@ -80,22 +88,21 @@ public class DataConfig {
 		return viewResolver;
 	}
 
-    private Properties getHibernateProperties() {
+ /*   private Properties getHibernateProperties() {
         Properties properties = new Properties();
-        /*spring.datasource.platform=postgreSQL
+        spring.datasource.platform=postgreSQL
         spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-        spring.jpa.hibernate.ddl-auto=update*/
+        spring.jpa.hibernate.ddl-auto=update
         properties.put("spring.datasource.platform", "postgreSQL");
         properties.put("spring.jpa.database-platform", "org.hibernate.dialect.PostgreSQLDialect");
         properties.put("spring.jpa.generate-ddl", "true");
-        properties.put("spring.jpa.hibernate.ddl-auto", "create");
-        properties.put("spring.jpa.hibernate.show_sql", "true");
+       properties.put("spring.jpa.hibernate.ddl-auto", "create");
+       properties.put("spring.jpa.hibernate.show_sql", "true");
         
-       /* properties.put(PROP_HIBERNATE_DIALECT, env.getRequiredProperty(PROP_HIBERNATE_DIALECT));
+        properties.put(PROP_HIBERNATE_DIALECT, env.getRequiredProperty(PROP_HIBERNATE_DIALECT));
         properties.put(PROP_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
-        properties.put("spring.jpa.hibernate.dd", "create");
-        properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));*/
+        properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
         return properties;
-    }
+    }*/
 
 }
