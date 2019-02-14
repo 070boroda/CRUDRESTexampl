@@ -87,22 +87,4 @@ public class DataConfig {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
-
- /*   private Properties getHibernateProperties() {
-        Properties properties = new Properties();
-        spring.datasource.platform=postgreSQL
-        spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-        spring.jpa.hibernate.ddl-auto=update
-        properties.put("spring.datasource.platform", "postgreSQL");
-        properties.put("spring.jpa.database-platform", "org.hibernate.dialect.PostgreSQLDialect");
-        properties.put("spring.jpa.generate-ddl", "true");
-       properties.put("spring.jpa.hibernate.ddl-auto", "create");
-       properties.put("spring.jpa.hibernate.show_sql", "true");
-        
-        properties.put(PROP_HIBERNATE_DIALECT, env.getRequiredProperty(PROP_HIBERNATE_DIALECT));
-        properties.put(PROP_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
-        properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
-        return properties;
-    }*/
-
 }
