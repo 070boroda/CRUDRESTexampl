@@ -24,7 +24,7 @@
 					<td><c:out value="${student.id}"></c:out></td>
 					<td><c:out value="${student.firstName}"></c:out></td>
 					<td><c:out value="${student.secondName}"></c:out></td>
-					<td><c:out value="${student.group}"></c:out></td>
+					<td><c:out value="${student.group.groupName}"></c:out></td>
 					<td><a href="${editUrl}">Edit</a></td>
 					<td><a href="${deleteUrl}">Delete</a></td>
 				</tr>
