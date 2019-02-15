@@ -22,10 +22,6 @@
 				<td><form:label path="secondName">Last Name</form:label></td>
 				<td><form:input path="secondName" /></td>
 			</tr>
-			<tr>
-                <td><form:label path="Group.nameGroup">Group Name</form:label></td>
-                <td><form:input path="Group" /></td>
-            </tr>
 		</table>
 		<input type="submit" value="Save" />
 	</form:form>

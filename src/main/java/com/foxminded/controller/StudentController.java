@@ -1,5 +1,7 @@
 package com.foxminded.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.foxminded.entity.Group;
 import com.foxminded.entity.Student;
+import com.foxminded.repository.GroupRepository;
 import com.foxminded.repository.StudentRepository;
 
 import lombok.Data;
@@ -21,6 +25,9 @@ public class StudentController {
 	
 	@Autowired
 	private StudentRepository repository;
+	
+	@Autowired
+	private GroupRepository groupRepository;
 	
 	@RequestMapping(value = "/showallstudents", method = RequestMethod.GET)
 	public ModelAndView showAllStudent() {
@@ -47,7 +54,7 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/studentedit", method = RequestMethod.POST)
-	public ModelAndView editStudent(@ModelAttribute("studentAttribute") Student student,
+	public ModelAndView editStudent(@ModelAttribute("studentAttribute") Student student, 
 			@RequestParam(value = "id", required = true) Integer id) {
 		student.setId(id);
 		repository.saveAndFlush(student);
@@ -56,6 +63,11 @@ public class StudentController {
 
 	@RequestMapping(value = "/studentedit", method = RequestMethod.GET)
 	public ModelAndView viewEditStudent(@RequestParam(value = "id", required = true) Integer id) {
-		return new ModelAndView("studentedit", "studentAttribute", repository.findOne(id));
+		ModelAndView modelAndView = new ModelAndView("studentedit");
+		Student student = repository.findOne(id);
+		List<Group> groups = groupRepository.findAll();
+		modelAndView.addObject("studentAttribute", student);
+		modelAndView.addObject("grouplist", groups);
+		return modelAndView;
 	}
 }

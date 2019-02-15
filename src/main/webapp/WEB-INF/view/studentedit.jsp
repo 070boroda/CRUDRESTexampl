@@ -26,6 +26,18 @@
 				<td><form:label path="secondName">Second Name</form:label></td>
 				<td><form:input path="secondName" /></td>
 			</tr>
+			 <tr>
+                <td><form:label path="group.id">id:</form:label></td>
+                <td><form:input path="group.id" disabled="true" /></td>
+            </tr>
+            <tr>
+                <td><form:select path="group">
+                <c:forEach var="group" items = "${grouplist}">
+                <form:option value="${group.id}">${group.groupName}</form:option>
+                </c:forEach>
+                </form:select></td>
+                
+            </tr>
 		</table>
 		<input type="submit" value="Save" />
 	</form:form>
