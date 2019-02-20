@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,9 +55,11 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/studentedit", method = RequestMethod.POST)
-	public ModelAndView editStudent(@ModelAttribute("studentAttribute") Student student, 
-			@RequestParam(value = "id", required = true) Integer id) {
-		student.setId(id);
+	public ModelAndView editStudent(@ModelAttribute("<%=  %>") Student student, 
+			@RequestParam(value = "id", required = true) Integer id, @PathVariable(value="group")
+	    Integer groupId) {
+		student.setId(id);		
+		student.setGroup(groupRepository.findOne(groupId));
 		repository.saveAndFlush(student);
 		return new ModelAndView("redirect:/showallstudents");
 	}

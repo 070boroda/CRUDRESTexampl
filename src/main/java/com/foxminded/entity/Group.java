@@ -33,5 +33,12 @@ public class Group implements Serializable {
 	
 	@OneToMany(mappedBy="group", fetch=FetchType.EAGER)
 	private Set<Student> students = new HashSet<Student>();
+
+	public Group(Integer id) {
+		super();
+		this.id = id;
+	}
+	
+	
 		
 }
