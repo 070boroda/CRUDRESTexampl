@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
 @Entity
-@Table (name = "student")
+@Table (name = "students")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
