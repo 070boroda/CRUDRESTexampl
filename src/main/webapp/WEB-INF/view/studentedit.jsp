@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <td><form:select path="group.id">
-                <form:option value=""></form:option>
+                <form:option value="NONE" label="--- Select ---"/>
                 <form:options items ="${grouplist}" itemLabel="groupName" itemValue="id"/>
                 </form:select></td>               
             </tr>

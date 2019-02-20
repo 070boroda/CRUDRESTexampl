@@ -55,11 +55,10 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/studentedit", method = RequestMethod.POST)
-	public ModelAndView editStudent(@ModelAttribute("<%=  %>") Student student, 
-			@RequestParam(value = "id", required = true) Integer id, @PathVariable(value="group")
-	    Integer groupId) {
-		student.setId(id);		
-		student.setGroup(groupRepository.findOne(groupId));
+	public ModelAndView editStudent(@ModelAttribute("studentAttribute") Student student, 
+			@RequestParam(value = "id", required = true) Integer id) {
+		student.setGroup(groupRepository.findOne(student.getGroup().getId()));
+		student.setId(id);
 		repository.saveAndFlush(student);
 		return new ModelAndView("redirect:/showallstudents");
 	}
