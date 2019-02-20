@@ -26,13 +26,9 @@
 				<td><form:label path="secondName">Second Name</form:label></td>
 				<td><form:input path="secondName" /></td>
 			</tr>
-			 <tr>
-                <td><form:label path="group.id">id:</form:label></td>
-                <td><form:input path="group.id" disabled="true" /></td>
-            </tr>
             <tr>
                 <td><form:select path="group.id">
-                <form:option value="NONE" label="--- Select ---"/>
+                <form:option value=null label="--- Select ---"/>
                 <form:options items ="${grouplist}" itemLabel="groupName" itemValue="id"/>
                 </form:select></td>               
             </tr>
