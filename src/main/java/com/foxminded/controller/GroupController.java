@@ -35,7 +35,7 @@ public class GroupController {
 	
 	@RequestMapping(value = "/groupdelete", method = RequestMethod.GET)
 	public ModelAndView deleteGroup(@RequestParam(value = "id", required = true) Integer id) {
-		groupRepository.delete(id);			
+		groupRepository.delete(id);	
 	    return new ModelAndView("redirect:/showallgroups", "id",id);
 	}
 	
