@@ -28,7 +28,7 @@
 			</tr>
             <tr>
                 <td><form:select path="group.id">
-                <form:option value=null label="--- Select ---"/>
+               <form:option value="" label="--- Select ---"/>
                 <form:options items ="${grouplist}" itemLabel="groupName" itemValue="id"/>
                 </form:select></td>               
             </tr>

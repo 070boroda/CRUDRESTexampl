@@ -22,6 +22,12 @@
 				<td><form:label path="secondName">Last Name</form:label></td>
 				<td><form:input path="secondName" /></td>
 			</tr>
+			 <tr>
+                <td><form:select path="group.id">
+                <form:option value="" label="--- Select ---"/>
+                <form:options items ="${grouplist}" itemLabel="groupName" itemValue="id"/>
+                </form:select></td>               
+            </tr>
 		</table>
 		<input type="submit" value="Save" />
 	</form:form>
