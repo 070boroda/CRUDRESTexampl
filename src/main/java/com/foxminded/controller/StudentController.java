@@ -38,6 +38,9 @@ public class StudentController {
 	
 	@RequestMapping(value = "/studentadd", method = RequestMethod.POST)
 	public ModelAndView addStudent(@ModelAttribute("attributeStudent") Student student) {
+		System.out.println("dspjd " + groupRepository.findOne(student.getGroup().getId()).toString());
+		
+		student.setGroup(groupRepository.findOne(student.getGroup().getId()));
 		repository.saveAndFlush(student);
 		return new ModelAndView("studentadded");
 	}
