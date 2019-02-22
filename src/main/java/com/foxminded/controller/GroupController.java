@@ -1,5 +1,7 @@
 package com.foxminded.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,13 +11,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.foxminded.entity.Group;
+import com.foxminded.entity.Student;
 import com.foxminded.repository.GroupRepository;
+import com.foxminded.repository.StudentRepository;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 public class GroupController {
 	
 	@Autowired
 	private GroupRepository groupRepository;
+	@Autowired
+	private StudentRepository studentRepository;
 
 	@RequestMapping(value = "/showallgroups", method = RequestMethod.GET)
 	public ModelAndView showAllGroup() {
@@ -34,7 +42,9 @@ public class GroupController {
 	}
 	
 	@RequestMapping(value = "/groupdelete", method = RequestMethod.GET)
-	public ModelAndView deleteGroup(@RequestParam(value = "id", required = true) Integer id) {
+	public ModelAndView deleteGroup(@RequestParam(value = "id", required = true
+	) 
+	Integer id) {		
 		groupRepository.delete(id);	
 	    return new ModelAndView("redirect:/showallgroups", "id",id);
 	}
