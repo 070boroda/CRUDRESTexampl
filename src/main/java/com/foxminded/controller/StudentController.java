@@ -38,9 +38,6 @@ public class StudentController {
 	
 	@RequestMapping(value = "/studentadd", method = RequestMethod.POST)
 	public ModelAndView addStudent(@ModelAttribute("attributeStudent") Student student) {
-		System.out.println("dspjd " + groupRepository.findOne(student.getGroup().getId()).toString());
-		
-		student.setGroup(groupRepository.findOne(student.getGroup().getId()));
 		repository.saveAndFlush(student);
 		return new ModelAndView("studentadded");
 	}
@@ -62,8 +59,6 @@ public class StudentController {
 	@RequestMapping(value = "/studentedit", method = RequestMethod.POST)
 	public ModelAndView editStudent(@ModelAttribute("studentAttribute") Student student, 
 			@RequestParam(value = "id", required = true) Integer id) {
-		student.setGroup(groupRepository.findOne(student.getGroup().getId()));
-		student.setId(id);
 		repository.saveAndFlush(student);
 		return new ModelAndView("redirect:/showallstudents");
 	}
