@@ -1,7 +1,5 @@
 package com.foxminded.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -44,7 +42,12 @@ public class GroupController {
 	@RequestMapping(value = "/groupdelete", method = RequestMethod.GET)
 	public ModelAndView deleteGroup(@RequestParam(value = "id", required = true
 	) 
-	Integer id) {		
+	Integer id) {	
+		for(Student student : groupRepository.findOne(id).getStudents()) {
+			log.debug("" + student.getGroup().getId());
+			student.setGroup(null);
+			studentRepository.saveAndFlush(student);
+			}		
 		groupRepository.delete(id);	
 	    return new ModelAndView("redirect:/showallgroups", "id",id);
 	}
