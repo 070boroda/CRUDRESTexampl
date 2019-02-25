@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,24 +22,44 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Subject implements Serializable {
+	
 	@Id
 	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
-    private String name;
-    
-    @Override
-    public String toString() {
-        return name;
-    }
-
-	public Subject(int id) {
-		super();
-		this.id = id;
+	@Column(name="subject_name")
+    private String subjectName;
+	
+	private Teacher teacher;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((subjectName == null) ? 0 : subjectName.hashCode());
+		return result;
 	}
-
-	public Subject(String name) {
-		super();
-		this.name = name;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Subject other = (Subject) obj;
+		if (id != other.id)
+			return false;
+		if (subjectName == null) {
+			if (other.subjectName != null)
+				return false;
+		} else if (!subjectName.equals(other.subjectName))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Subject [id=" + id + ", subjectName=" + subjectName + "]";
 	}
 	
 }
