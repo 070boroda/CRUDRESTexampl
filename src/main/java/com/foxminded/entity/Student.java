@@ -35,8 +35,7 @@ public class Student implements Serializable {
 	@Column(name = "second_name")
 	private String secondName;
 	
-	@ManyToOne (fetch=FetchType.EAGER
-			/*cascade = CascadeType.ALL*/)
+	@ManyToOne (fetch=FetchType.EAGER)
 	@JoinColumn(name="group_id")
 	private Group group;
 
