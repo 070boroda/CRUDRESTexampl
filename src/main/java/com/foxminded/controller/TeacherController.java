@@ -21,7 +21,7 @@ public class TeacherController {
 	@Autowired
 	private SubjectRepository subjectRepository;
 
-	@RequestMapping(value = "/showallteacher", method = RequestMethod.GET)
+	@RequestMapping(value = "/showallteachers", method = RequestMethod.GET)
 	public ModelAndView showAllTeacher() {
 		return new ModelAndView("teacherpage", "teacherlist", teacherRepository.findAll());
 	}
@@ -34,7 +34,7 @@ public class TeacherController {
 	@RequestMapping(value = "/teacheradd", method = RequestMethod.POST)
 	public ModelAndView addTeacher(@ModelAttribute ("teacherAttribute") Teacher teacher) {
 		teacherRepository.saveAndFlush(teacher);		
-		return new ModelAndView("teacheradded");
+		return new ModelAndView("redirect:/showallteachers");
 	}
 	
 	@RequestMapping(value = "/teacherdelete", method = RequestMethod.GET)

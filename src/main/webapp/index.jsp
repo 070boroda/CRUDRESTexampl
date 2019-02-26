@@ -15,14 +15,14 @@
       
         <c:url value="/showallstudents" var="student" />
         <c:url value="/showallgroups" var="group" />
-		
+		<c:url value="/showallteachers" var="teacher" />
       
      
         <a href="${student}">Student</a><br>
         <a href="${group}">Group</a><br>
-        <a href="ServletSubject">Subjects</a><br>
-        <a href="ServletTeacher">Teachers</a><br>
-        <a href="ScheduleServlet">Schedule</a><br>
+        <a href="">Subjects</a><br>
+        <a href="${teacher}">Teachers</a><br>
+        <a href="">Schedule</a><br>
      
       <a href="<%= request.getRequestURI() %>">Try Again</a>
 	</div>
