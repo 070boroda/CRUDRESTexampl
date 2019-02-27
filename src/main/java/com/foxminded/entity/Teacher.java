@@ -40,10 +40,6 @@ public class Teacher implements Serializable {
     @Column(name="second_name")
     private String secondName;
     
-	@OneToMany(mappedBy="teacher", fetch=FetchType.EAGER
-		    , cascade = CascadeType.ALL)
-			private Set<Subject> subjects = new HashSet<Subject>();
-    
 	public Teacher(String firstName, String secondName) {
 		super();
 		this.firstName = firstName;

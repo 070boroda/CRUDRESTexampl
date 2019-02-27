@@ -18,8 +18,6 @@ public class TeacherController {
 	
 	@Autowired
 	private TeacherRepository teacherRepository;
-	@Autowired
-	private SubjectRepository subjectRepository;
 
 	@RequestMapping(value = "/showallteachers", method = RequestMethod.GET)
 	public ModelAndView showAllTeacher() {
@@ -40,11 +38,7 @@ public class TeacherController {
 	@RequestMapping(value = "/teacherdelete", method = RequestMethod.GET)
 	public ModelAndView deleteTeacher(@RequestParam(value = "id", required = true
 	) 
-	Integer id) {	
-		for(Subject subject : teacherRepository.findOne(id).getSubjects()) {
-			subject.setTeacher(null);
-			subjectRepository.saveAndFlush(subject);
-			}		
+	Integer id) {			
 		teacherRepository.delete(id);	
 	    return new ModelAndView("redirect:/showallteachers", "id",id);
 	}

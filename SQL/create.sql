@@ -16,5 +16,4 @@ second_name varchar(15));
 
 CREATE TABLE IF NOT EXISTS subjects (
 id SERIAL PRIMARY KEY,  
-subject_name varchar(15), 
-teacher_id INT REFERENCES teachers(id));
+subject_name varchar(15));
