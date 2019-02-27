@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.foxminded.entity.Subject;
 import com.foxminded.entity.Teacher;
-import com.foxminded.repository.SubjectRepository;
 import com.foxminded.repository.TeacherRepository;
 
 @Controller
@@ -21,12 +19,12 @@ public class TeacherController {
 
 	@RequestMapping(value = "/showallteachers", method = RequestMethod.GET)
 	public ModelAndView showAllTeacher() {
-		return new ModelAndView("teacherpage", "teacherlist", teacherRepository.findAll());
+		return new ModelAndView("/teacher/teacherpage", "teacherslist", teacherRepository.findAll());
 	}
 	
 	@RequestMapping(value = "/teacheradd", method = RequestMethod.GET)
 	public ModelAndView showAddTeacher() {		
-		return new ModelAndView("teacheradd", "teacherAttribute", new Teacher());		
+		return new ModelAndView("/teacher/teacheradd", "teacherAttribute", new Teacher());		
 	}
 	
 	@RequestMapping(value = "/teacheradd", method = RequestMethod.POST)
@@ -53,6 +51,6 @@ public class TeacherController {
 
 	@RequestMapping(value = "/teacheredit", method = RequestMethod.GET)
 	public ModelAndView viewEditTeacher(@RequestParam(value = "id", required = true) Integer id) {
-		return new ModelAndView("teacheredit", "teacherAttribute", teacherRepository.findOne(id));
+		return new ModelAndView("/teacher/teacheredit", "teacherAttribute", teacherRepository.findOne(id));
 	}
 }

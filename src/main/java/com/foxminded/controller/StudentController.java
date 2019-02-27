@@ -31,7 +31,7 @@ public class StudentController {
 	
 	@RequestMapping(value = "/showallstudents", method = RequestMethod.GET)
 	public ModelAndView showAllStudent() {
-		ModelAndView modelAndView = new ModelAndView("studentpage");
+		ModelAndView modelAndView = new ModelAndView("/student/studentpage");
 		modelAndView.addObject("studentslist", repository.findAll());		
 		return modelAndView;
 	}
@@ -39,12 +39,12 @@ public class StudentController {
 	@RequestMapping(value = "/studentadd", method = RequestMethod.POST)
 	public ModelAndView addStudent(@ModelAttribute("attributeStudent") Student student) {
 		repository.saveAndFlush(student);
-		return new ModelAndView("studentadded");
+		return new ModelAndView("/student/studentadded");
 	}
 
 	@RequestMapping(value = "/studentadd", method = RequestMethod.GET)
 	public ModelAndView viewAddStudent() {
-		ModelAndView modelAndView = new ModelAndView("studentadd");
+		ModelAndView modelAndView = new ModelAndView("/student/studentadd");
 		modelAndView.addObject("grouplist", groupRepository.findAll());
 		modelAndView.addObject("attributeStudent", new Student());
 		return modelAndView;		
@@ -65,7 +65,7 @@ public class StudentController {
 
 	@RequestMapping(value = "/studentedit", method = RequestMethod.GET)
 	public ModelAndView viewEditStudent(@RequestParam(value = "id", required = true) Integer id) {
-		ModelAndView modelAndView = new ModelAndView("studentedit");
+		ModelAndView modelAndView = new ModelAndView("/student/studentedit");
 		Student student = repository.findOne(id);
 		List<Group> groups = groupRepository.findAll();
 		modelAndView.addObject("studentAttribute", student);

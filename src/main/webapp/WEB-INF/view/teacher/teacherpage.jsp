@@ -17,10 +17,10 @@
 				<th>Second Name</th>
 				
 			</tr>
-			<c:forEach var="teacher" items="${teacherlist}">
+			<c:forEach var="teacher" items="${teacherslist}">
 				<tr>
-					<c:url var="editUrl" value="/teacheredit?id=${student.id}" />
-					<c:url var="deleteUrl" value="/teacherdelete?id=${student.id}" />
+					<c:url var="editUrl" value="/teacheredit?id=${teacher.id}" />
+					<c:url var="deleteUrl" value="/teacherdelete?id=${teacher.id}" />
 					<td><c:out value="${teacher.id}"></c:out></td>
 					<td><c:out value="${teacher.firstName}"></c:out></td>
 					<td><c:out value="${teacher.secondName}"></c:out></td>
