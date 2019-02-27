@@ -36,7 +36,7 @@ public class GroupController {
 	@RequestMapping(value = "/groupadd", method = RequestMethod.POST)
 	public ModelAndView addGroup(@ModelAttribute ("groupAttribute") Group group) {
 		groupRepository.saveAndFlush(group);		
-		return new ModelAndView("groupadded");
+		return new ModelAndView("/group/groupadded");
 	}
 	
 	@RequestMapping(value = "/groupdelete", method = RequestMethod.GET)
