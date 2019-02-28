@@ -27,9 +27,11 @@ public class Field {
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
 	@Column(name="day")
 	@Enumerated(EnumType.STRING)
 	private DayOfWeek day;
+	
 	@Column(name="number_lesson")
 	private Integer numberLesson;
 	
