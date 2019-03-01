@@ -12,7 +12,7 @@
     <div align="center">
     <h1>Choose day and group for show schedule</h1>
         <c:url var="chooseUrl" value="/schedulechoose" />
-        <form:form modelAttribute="scheduleAttribute" metod=POST action="chooseUrl">
+        <form:form modelAttribute="scheduleAttribute" method="POST" action="${chooseUrl}">
         
                 <form:select path="group.id">
                 <form:option value="" label="--- Select ---"/>
@@ -21,7 +21,7 @@
                 
                 <form:select path="day">
                 <form:option value="" label="--- Select ---"/>
-                <form:options items ="${daylist}" itemLabel="day" itemValue="day"/>
+                <form:options items ="${daylist}" itemLabel="value" itemValue="value"/>
                 </form:select>
         <input type="submit" value="Find" />
         </form:form>
