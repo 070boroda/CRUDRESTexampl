@@ -17,3 +17,10 @@ second_name varchar(15));
 CREATE TABLE IF NOT EXISTS subjects (
 id SERIAL PRIMARY KEY,  
 subject_name varchar(15));
+
+CREATE TABLE IF NOT EXISTS fields (
+id SERIAL PRIMARY KEY,  
+day varchar(15),
+number_lesson INT,
+subject_id INT REFERENCES subjects(id),
+group_id INT REFERENCES groups (id));
