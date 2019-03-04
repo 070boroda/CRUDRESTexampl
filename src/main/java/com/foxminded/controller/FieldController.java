@@ -35,8 +35,6 @@ public class FieldController {
 		field.setGroup(groupRepository.findOne(field.getGroup().getId()));
 		modelAndView.addObject("fieldlist",fieldRepository.findByDayAndGroup(field.getDay(),
 				groupRepository.findOne(field.getGroup().getId())));
-		
-		System.out.println(field.getDay()+ " " + field.getGroup().getGroupName());
 		modelAndView.addObject("scheduleAttribute", field);
 		return modelAndView;
 	}
