@@ -44,48 +44,10 @@ public class Field {
 	private Group group;
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((day == null) ? 0 : day.hashCode());
-		result = prime * result + ((group == null) ? 0 : group.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((numberLesson == null) ? 0 : numberLesson.hashCode());
-		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
-		return result;
+	public String toString() {
+		return "Field [id=" + id + ", day=" + day + ", numberLesson=" + numberLesson + ", subject=" + subject
+				+ ", group=" + group + "]";
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Field other = (Field) obj;
-		if (day != other.day)
-			return false;
-		if (group == null) {
-			if (other.group != null)
-				return false;
-		} else if (!group.equals(other.group))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (numberLesson == null) {
-			if (other.numberLesson != null)
-				return false;
-		} else if (!numberLesson.equals(other.numberLesson))
-			return false;
-		if (subject == null) {
-			if (other.subject != null)
-				return false;
-		} else if (!subject.equals(other.subject))
-			return false;
-		return true;
-	}
+	
+	
 }

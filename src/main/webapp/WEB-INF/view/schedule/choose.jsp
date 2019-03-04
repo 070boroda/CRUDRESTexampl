@@ -15,15 +15,16 @@
         <form:form modelAttribute="scheduleAttribute" method="POST" action="${chooseUrl}">
         
                 <form:select path="group.id">
-                <form:option value="" label="--- Select ---"/>
-                <form:options items ="${grouplist}" itemLabel="groupName" itemValue="id"/>
+                  <form:option value="" label="--- Select ---"/>
+                  <form:options items ="${grouplist}" itemLabel="groupName" itemValue="id"/>
                 </form:select>
                 
                 <form:select path="day">
-                <form:option value="" label="--- Select ---"/>
-                <form:options items ="${daylist}" itemLabel="value" itemValue="value"/>
+                  <form:option value="" label="--- Select ---"/>
+                  <form:options items ="${daylist}" itemLabel="value" 
+                  itemValue="value"/>
                 </form:select>
-        <input type="submit" value="Find" />
+        <input type="submit" value="Find"/>
         </form:form>
     </div>
 </body>
