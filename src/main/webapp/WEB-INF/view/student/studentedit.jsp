@@ -19,7 +19,7 @@
 				<td><form:input path="id" disabled="true" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="firstName">Last Name </form:label></td>
+				<td><form:label path="firstName">Last Name</form:label></td>
 				<td><form:input path="firstName" /></td>
 			</tr>
 			<tr>
@@ -28,7 +28,7 @@
 			</tr>
             <tr>
                 <td><form:select path="group.id">
-               <form:option value="" label="--- Select ---"/>
+                <form:option value="" label="--- Select ---"/>
                 <form:options items ="${grouplist}" itemLabel="groupName" itemValue="id"/>
                 </form:select></td>               
             </tr>

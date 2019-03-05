@@ -52,7 +52,12 @@ public class FieldController {
 		field.setGroup(groupRepository.findOneByName(groupName));
 		modelAndView.addObject("subjectlist", subjectRepository.findAll());
 		modelAndView.addObject("scheduleAttribute", field);
-		return modelAndView;
-		
+		return modelAndView;		
+	}
+	
+	@RequestMapping(value="/scheduleadd", method = RequestMethod.POST)
+	public ModelAndView addSchedule(@ModelAttribute("scheduleAttribute") Field field) {
+		fieldRepository.saveAndFlush(field);
+		return new ModelAndView("redirect:/showschedule");
 	}
 }

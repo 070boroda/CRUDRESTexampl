@@ -10,6 +10,7 @@
     <packaging>war</packaging>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <spring.mvc>4.0.3.RELEASE</spring.mvc>
         <spring.data>1.3.4.RELEASE</spring.data>
