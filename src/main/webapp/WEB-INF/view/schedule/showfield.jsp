@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Show Schedule</title>
 </head>
-<c:url var="addUrl" value="/fieldadd" />
+<c:url var="addUrl" value="/fieldadd?day=${scheduleAttribute.day}&group=${scheduleAttribute.group.groupName}" />
 <body>
     <div align="center">
             <h1>Schedule

@@ -5,12 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.foxminded.entity.DayOfWeek;
 import com.foxminded.entity.Field;
 import com.foxminded.repository.FieldRepository;
 import com.foxminded.repository.GroupRepository;
+import com.foxminded.repository.SubjectRepository;
 
 @Controller
 public class FieldController {
@@ -19,6 +21,8 @@ public class FieldController {
 	private FieldRepository fieldRepository;
 	@Autowired
 	private GroupRepository groupRepository;
+	@Autowired
+	private SubjectRepository subjectRepository;
 	
 	@RequestMapping(value = "/showschedule", method=RequestMethod.GET)
 	public ModelAndView showChooseView(){
@@ -37,5 +41,14 @@ public class FieldController {
 				groupRepository.findOne(field.getGroup().getId())));
 		modelAndView.addObject("scheduleAttribute", field);
 		return modelAndView;
+	}
+	@RequestMapping(value="/fieldadd", method = RequestMethod.GET)
+	public ModelAndView showAddSchedule(@RequestParam(value = "day", required = true) String day,
+			@RequestParam(value = "group", required = true) String groupName) {
+		ModelAndView modelAndView = new ModelAndView("/schedule/addschedule");
+		modelAndView.addObject("subjectlist", subjectRepository.findAll());
+		modelAndView.addObject("scheduleAttribute", new Field());
+		return modelAndView;
+		
 	}
 }

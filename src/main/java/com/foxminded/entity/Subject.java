@@ -29,7 +29,7 @@ public class Subject implements Serializable {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 	
 	@Column(name="subject_name")
     private String subjectName;

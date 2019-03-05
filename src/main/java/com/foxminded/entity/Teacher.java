@@ -29,7 +29,7 @@ public class Teacher implements Serializable {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name="first_name")
     private String firstName;
     @Column(name="second_name")
