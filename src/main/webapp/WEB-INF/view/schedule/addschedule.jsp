@@ -11,7 +11,7 @@
 <body>
     <div align="center">
     <h1>Add schedule</h1>
-        <c:url var="chooseUrl" value="/scheduleadd"/>
+        <c:url var="chooseUrl" value="/scheduleadd?day=${scheduleAttribute.day}&group.id=${scheduleAttribute.group.id}"/>
         <form:form modelAttribute="scheduleAttribute" method="POST" action="${chooseUrl}">
         
                 <td><form:label path="day">Day</form:label></td>

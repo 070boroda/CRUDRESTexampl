@@ -52,6 +52,9 @@ public class StudentController {
 
 	@RequestMapping(value = "/studentdelete", method = RequestMethod.GET)
 	public ModelAndView deleteStudent(@RequestParam(value = "id", required = true) Integer id) {
+		Student student = repository.findOne(id);
+		student.setGroup(null);
+		repository.saveAndFlush(student);
 		repository.delete(id);
 		return new ModelAndView("redirect:/showallstudents", "id", id);
 	}
