@@ -16,9 +16,7 @@
         
                 <td><form:label path="day">Day</form:label></td>
                 <td><form:input path="day" disabled="true" /></td>
-                
-                <td><form:label path="day">Day</form:label></td>
-                <td><form:input path="day" disabled="true" /></td>
+
                 
                 <form:select path="numberLesson">
                   <form:option value="" label="--- Select ---"/>

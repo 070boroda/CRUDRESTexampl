@@ -42,6 +42,7 @@ public class FieldController {
 		modelAndView.addObject("scheduleAttribute", field);
 		return modelAndView;
 	}
+	
 	@RequestMapping(value="/fieldadd", method = RequestMethod.GET)
 	public ModelAndView showAddSchedule(@RequestParam(value = "day", required = true) DayOfWeek day,
 			@RequestParam(value = "group", required = true) String groupName) {
