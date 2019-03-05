@@ -14,6 +14,12 @@
         <c:url var="chooseUrl" value="/scheduleadd" />
         <form:form modelAttribute="scheduleAttribute" method="POST" action="${chooseUrl}">
         
+                <td><form:label path="day">Day</form:label></td>
+                <td><form:input path="day" disabled="true" /></td>
+                
+                <td><form:label path="day">Day</form:label></td>
+                <td><form:input path="day" disabled="true" /></td>
+                
                 <form:select path="numberLesson">
                   <form:option value="" label="--- Select ---"/>
                   <form:option value="1" label="1"/>

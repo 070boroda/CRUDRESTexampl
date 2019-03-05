@@ -43,11 +43,14 @@ public class FieldController {
 		return modelAndView;
 	}
 	@RequestMapping(value="/fieldadd", method = RequestMethod.GET)
-	public ModelAndView showAddSchedule(@RequestParam(value = "day", required = true) String day,
+	public ModelAndView showAddSchedule(@RequestParam(value = "day", required = true) DayOfWeek day,
 			@RequestParam(value = "group", required = true) String groupName) {
 		ModelAndView modelAndView = new ModelAndView("/schedule/addschedule");
+		Field field = new Field();
+		field.setDay(day);
+		field.setGroup(groupRepository.findOneByName(groupName));
 		modelAndView.addObject("subjectlist", subjectRepository.findAll());
-		modelAndView.addObject("scheduleAttribute", new Field());
+		modelAndView.addObject("scheduleAttribute", field);
 		return modelAndView;
 		
 	}
