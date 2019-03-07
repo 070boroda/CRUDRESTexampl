@@ -69,5 +69,20 @@ public class FieldController {
 		fieldRepository.delete(id);
 		return modelAndView;
 	}
-	
+
+	@RequestMapping(value="/fieldedit", method = RequestMethod.GET)
+    public ModelAndView showEditView(@RequestParam(value="id")Integer id){
+        ModelAndView modelAndView = new ModelAndView("/schedule/addschedule");
+        modelAndView.addObject("scheduleAttribute",fieldRepository.findOne(id));
+        modelAndView.addObject("subjectlist", subjectRepository.findAll());
+        return  modelAndView;
+    }
+
+    @RequestMapping(value="/scheduleedit", method = RequestMethod.POST)
+    public ModelAndView EditView(@ModelAttribute("scheduleAttribute") Field field){
+        ModelAndView modelAndView = new ModelAndView("/schedule/addschedule");
+
+        return  modelAndView;
+    }
+
 }

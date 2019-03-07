@@ -11,7 +11,12 @@
 <body>
     <div align="center">
     <h1>Add schedule</h1>
-        <c:url var="chooseUrl" value="/scheduleadd?day=${scheduleAttribute.day}&group.id=${scheduleAttribute.group.id}"/>
+        <c:if test="${scheduleAttribute.numberlesson eq null && scheduleAttribute.subject.id eq null}">
+            <c:url var="chooseUrl" value="/scheduleadd?day=${scheduleAttribute.day}&group.id=${scheduleAttribute.group.id}"/>
+        </c:if>
+        <c:if test="${scheduleAttribute.numberlesson ne null && scheduleAttribute.subject.id ne null}">
+        <c:url var="chooseUrl" value="/scheduleedit?day=${scheduleAttribute.day}&group.id=${scheduleAttribute.group.id}"/>
+        </c:if>
         <form:form modelAttribute="scheduleAttribute" method="POST" action="${chooseUrl}">
         
                 <td><form:label path="day">Day</form:label></td>
