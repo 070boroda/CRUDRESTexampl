@@ -59,9 +59,13 @@ public class FieldController {
 		return new ModelAndView("redirect:/showschedule");
 	}
 
-	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public ModelAndView deleteField(@PathVariable(value="id") Integer id){
+	@RequestMapping(value="/fielddelete", method = RequestMethod.GET)
+	public ModelAndView deleteField(@RequestParam(value="id") Integer id){
 		ModelAndView modelAndView = new ModelAndView("redirect:/showschedule");
+		Field field = fieldRepository.findOne(id);
+		field.setGroup(null);
+		field.setSubject(null);
+		fieldRepository.saveAndFlush(field);
 		fieldRepository.delete(id);
 		return modelAndView;
 	}
