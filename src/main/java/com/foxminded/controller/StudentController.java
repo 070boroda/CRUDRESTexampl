@@ -22,57 +22,57 @@ import lombok.NoArgsConstructor;
 @RestController
 @NoArgsConstructor
 public class StudentController {
-	
-	@Autowired
-	private StudentRepository repository;
-	
-	@Autowired
-	private GroupRepository groupRepository;
-	
-	@RequestMapping(value = "/showallstudents", method = RequestMethod.GET)
-	public ModelAndView showAllStudent() {
-		ModelAndView modelAndView = new ModelAndView("/student/studentpage");
-		modelAndView.addObject("studentslist", repository.findAll());		
-		return modelAndView;
-	}
-	
-	@RequestMapping(value = "/studentadd", method = RequestMethod.POST)
-	public ModelAndView addStudent(@ModelAttribute("attributeStudent") Student student) {
-		repository.saveAndFlush(student);
-		return new ModelAndView("/student/studentadded");
-	}
 
-	@RequestMapping(value = "/studentadd", method = RequestMethod.GET)
-	public ModelAndView viewAddStudent() {
-		ModelAndView modelAndView = new ModelAndView("/student/studentadd");
-		modelAndView.addObject("grouplist", groupRepository.findAll());
-		modelAndView.addObject("attributeStudent", new Student());
-		return modelAndView;		
-	}
+    @Autowired
+    private StudentRepository repository;
 
-	@RequestMapping(value = "/studentdelete", method = RequestMethod.GET)
-	public ModelAndView deleteStudent(@RequestParam(value = "id", required = true) Integer id) {
-		Student student = repository.findOne(id);
-		student.setGroup(null);
-		repository.saveAndFlush(student);
-		repository.delete(id);
-		return new ModelAndView("redirect:/showallstudents", "id", id);
-	}
+    @Autowired
+    private GroupRepository groupRepository;
 
-	@RequestMapping(value = "/studentedit", method = RequestMethod.POST)
-	public ModelAndView editStudent(@ModelAttribute("studentAttribute") Student student, 
-			@RequestParam(value = "id", required = true) Integer id) {
-		repository.saveAndFlush(student);
-		return new ModelAndView("redirect:/showallstudents");
-	}
+    @RequestMapping(value = "/showallstudents", method = RequestMethod.GET)
+    public ModelAndView showAllStudent() {
+        ModelAndView modelAndView = new ModelAndView("/student/studentpage");
+        modelAndView.addObject("studentslist", repository.findAll());
+        return modelAndView;
+    }
 
-	@RequestMapping(value = "/studentedit", method = RequestMethod.GET)
-	public ModelAndView viewEditStudent(@RequestParam(value = "id", required = true) Integer id) {
-		ModelAndView modelAndView = new ModelAndView("/student/studentedit");
-		Student student = repository.findOne(id);
-		List<Group> groups = groupRepository.findAll();
-		modelAndView.addObject("studentAttribute", student);
-		modelAndView.addObject("grouplist", groups);
-		return modelAndView;
-	}
+    @RequestMapping(value = "/studentadd", method = RequestMethod.POST)
+    public ModelAndView addStudent(@ModelAttribute("attributeStudent") Student student) {
+        repository.saveAndFlush(student);
+        return new ModelAndView("/student/studentadded");
+    }
+
+    @RequestMapping(value = "/studentadd", method = RequestMethod.GET)
+    public ModelAndView viewAddStudent() {
+        ModelAndView modelAndView = new ModelAndView("/student/studentadd");
+        modelAndView.addObject("grouplist", groupRepository.findAll());
+        modelAndView.addObject("attributeStudent", new Student());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/studentdelete", method = RequestMethod.GET)
+    public ModelAndView deleteStudent(@RequestParam(value = "id", required = true) Integer id) {
+        Student student = repository.findOne(id);
+        student.setGroup(null);
+        repository.saveAndFlush(student);
+        repository.delete(id);
+        return new ModelAndView("redirect:/showallstudents", "id", id);
+    }
+
+    @RequestMapping(value = "/studentedit", method = RequestMethod.POST)
+    public ModelAndView editStudent(@ModelAttribute("studentAttribute") Student student,
+                                    @RequestParam(value = "id", required = true) Integer id) {
+        repository.saveAndFlush(student);
+        return new ModelAndView("redirect:/showallstudents");
+    }
+
+    @RequestMapping(value = "/studentedit", method = RequestMethod.GET)
+    public ModelAndView viewEditStudent(@RequestParam(value = "id", required = true) Integer id) {
+        ModelAndView modelAndView = new ModelAndView("/student/studentedit");
+        Student student = repository.findOne(id);
+        List<Group> groups = groupRepository.findAll();
+        modelAndView.addObject("studentAttribute", student);
+        modelAndView.addObject("grouplist", groups);
+        return modelAndView;
+    }
 }

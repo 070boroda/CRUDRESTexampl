@@ -21,35 +21,34 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@SuppressWarnings("serial")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "groups")
 public class Group implements Serializable {
-	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-	@Column(name="group_name")
-	private String groupName;
-	
-	@OneToMany(mappedBy="group", fetch=FetchType.EAGER,
-			cascade = CascadeType.ALL)
-	private Set<Student> students = new HashSet<Student>();
-	
-	@OneToMany(mappedBy="group", fetch=FetchType.EAGER,
-			cascade = CascadeType.ALL)
-	private Set<Field> fields = new HashSet<Field>();
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "group_name")
+    private String groupName;
 
-	public Group(Integer id) {
-		super();
-		this.id = id;
-	}
+    @OneToMany(mappedBy = "group", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
+    private Set<Student> students = new HashSet<Student>();
 
-	@Override
-	public String toString() {
-		return "Group [id=" + id + ", groupName=" + groupName + "]";
-	}
+    @OneToMany(mappedBy = "group", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
+    private Set<Field> fields = new HashSet<Field>();
+
+    public Group(Integer id) {
+        super();
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Group [id=" + id + ", groupName=" + groupName + "]";
+    }
 
 }

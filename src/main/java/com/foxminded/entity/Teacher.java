@@ -19,33 +19,30 @@ import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Entity
-@Table (name = "teachers")
+@Table(name = "teachers")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 public class Teacher implements Serializable {
-	
-	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
-    @Column(name="second_name")
+    @Column(name = "second_name")
     private String secondName;
-    
-	public Teacher(String firstName, String secondName) {
-		super();
-		this.firstName = firstName;
-		this.secondName = secondName;
-	}
 
-	public Teacher(int id) {
-		super();
-		this.id = id;
-	}
-    
-    
+    public Teacher(String firstName, String secondName) {
+        super();
+        this.firstName = firstName;
+        this.secondName = secondName;
+    }
 
+    public Teacher(int id) {
+        super();
+        this.id = id;
+    }
 }

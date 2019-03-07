@@ -17,37 +17,35 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="fields")
+@Table(name = "fields")
 @Setter
 @Getter
 @NoArgsConstructor
 public class Field {
-	
-	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(name="day")
-	@Enumerated(EnumType.STRING)
-	private DayOfWeek day;
-	
-	@Column(name="number_lesson")
-	private Integer numberLesson;
-	
-	@ManyToOne (fetch=FetchType.EAGER)
-	@JoinColumn(name="subject_id")
-	private Subject subject;
-	
-	@ManyToOne (fetch=FetchType.EAGER)
-	@JoinColumn(name="group_id")
-	private Group group;
 
-	@Override
-	public String toString() {
-		return "Field [id=" + id + ", day=" + day + ", numberLesson=" + numberLesson + ", subject=" + subject
-				+ ", group=" + group + "]";
-	}
-	
-	
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "day")
+    @Enumerated(EnumType.STRING)
+    private DayOfWeek day;
+
+    @Column(name = "number_lesson")
+    private Integer numberLesson;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    @Override
+    public String toString() {
+        return "Field [id=" + id + ", day=" + day + ", numberLesson=" + numberLesson + ", subject=" + subject
+                + ", group=" + group + "]";
+    }
 }

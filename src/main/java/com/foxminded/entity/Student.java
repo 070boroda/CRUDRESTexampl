@@ -19,30 +19,28 @@ import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Entity
-@Table (name = "students")
+@Table(name = "students")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 public class Student implements Serializable {
-	
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	@Column(name = "first_name")
-	private String firstName;
-	@Column(name = "second_name")
-	private String secondName;
-	
-	@ManyToOne (fetch=FetchType.EAGER)
-	@JoinColumn(name="group_id")
-	private Group group;
 
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + "]";
-	}
-	
-	
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "second_name")
+    private String secondName;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + "]";
+    }
 }

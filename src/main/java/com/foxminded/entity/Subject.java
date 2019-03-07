@@ -19,27 +19,26 @@ import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Entity
-@Table (name = "subjects")
+@Table(name = "subjects")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 public class Subject implements Serializable {
-	
-	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
-	
-	@Column(name="subject_name")
-    private String subjectName;
-	
-	@OneToMany(mappedBy="subject", fetch=FetchType.EAGER,
-			cascade=CascadeType.ALL)
 
-	@Override
-	public String toString() {
-		return "Subject [id=" + id + ", subjectName=" + subjectName + "]";
-	}
-	
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "subject_name")
+    private String subjectName;
+
+    @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
+
+    @Override
+    public String toString() {
+        return "Subject [id=" + id + ", subjectName=" + subjectName + "]";
+    }
 }
