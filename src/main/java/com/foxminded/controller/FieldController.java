@@ -3,10 +3,7 @@ package com.foxminded.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.foxminded.entity.DayOfWeek;
@@ -60,6 +57,13 @@ public class FieldController {
 	public ModelAndView addSchedule(@ModelAttribute("scheduleAttribute") Field field) {
 		fieldRepository.saveAndFlush(field);
 		return new ModelAndView("redirect:/showschedule");
+	}
+
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
+	public ModelAndView deleteField(@PathVariable(value="id") Integer id){
+		ModelAndView modelAndView = new ModelAndView("redirect:/showschedule");
+		fieldRepository.delete(id);
+		return modelAndView;
 	}
 	
 }
