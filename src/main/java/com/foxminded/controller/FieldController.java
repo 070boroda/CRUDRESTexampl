@@ -1,5 +1,6 @@
 package com.foxminded.controller;
 
+import com.foxminded.entity.Group;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import com.foxminded.repository.SubjectRepository;
 @Controller
 public class FieldController {
 
+	public static final DayOfWeek[] WEEK_DAY = DayOfWeek.values();
+
 	@Autowired
 	private FieldRepository fieldRepository;
 	@Autowired
@@ -27,7 +30,7 @@ public class FieldController {
 	public ModelAndView showChooseView() {
 		ModelAndView modelAndView = new ModelAndView("/schedule/choose");
 		modelAndView.addObject("grouplist", groupRepository.findAll());
-		modelAndView.addObject("daylist", DayOfWeek.values());
+		modelAndView.addObject("daylist", WEEK_DAY);
 		modelAndView.addObject("scheduleAttribute", new Field());
 		return modelAndView;
 	}
@@ -35,9 +38,10 @@ public class FieldController {
 	@RequestMapping(value = "/schedulechoose", method = RequestMethod.POST)
 	public ModelAndView showScheduleByDayAndGroup(@ModelAttribute("scheduleAttribute") Field field) {
 		ModelAndView modelAndView = new ModelAndView("/schedule/showfield");
-		field.setGroup(groupRepository.findOne(field.getGroup().getId()));
+		Group group = groupRepository.findOne(field.getGroup().getId());
+		field.setGroup(group);
 		modelAndView.addObject("fieldlist", fieldRepository.findByDayAndGroup(field.getDay(),
-				groupRepository.findOne(field.getGroup().getId())));
+				group));
 		modelAndView.addObject("scheduleAttribute", field);
 		return modelAndView;
 	}
