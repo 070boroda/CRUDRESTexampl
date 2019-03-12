@@ -15,10 +15,17 @@ public class GroupRESTController {
     GroupRepository groupRepository;
 
     @GetMapping
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping
     public List<Group> findAll (){
         return groupRepository.findAll();
     }
+
+    @GetMapping
+    @RequestMapping(value = "/{id}")
+    public Group findGroup(@PathVariable(name = "id")Integer id){
+        return groupRepository.findOne(id);
+    }
+
 
 
 
