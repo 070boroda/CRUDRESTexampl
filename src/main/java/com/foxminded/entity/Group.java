@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,10 +34,12 @@ public class Group implements Serializable {
     @Column(name = "group_name")
     private String groupName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "group", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Set<Student> students = new HashSet<Student>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "group", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Set<Field> fields = new HashSet<Field>();
