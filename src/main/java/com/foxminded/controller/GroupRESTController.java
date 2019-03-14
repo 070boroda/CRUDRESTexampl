@@ -11,33 +11,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value ="/group")
 public class GroupRESTController {
 
     @Autowired
     GroupRepository groupRepository;
 
-    @GetMapping
-    @RequestMapping
-    public ResponseEntity<List<Group>> findAll(){
-        List<Group> groups = groupRepository.findAll();
-        if(groups.isEmpty()){
-            return new ResponseEntity<>(groups, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(groups,HttpStatus.OK);
+    @GetMapping("/group")
+    public List<Group> findAll(){
+        return groupRepository.findAll();
     }
 
-    @GetMapping
-    @RequestMapping(value = "/{id}")
-    public ResponseEntity<?> findOneGroup(@PathVariable(name = "id")Integer id){
-        Group group = groupRepository.findOne(id);
-        if(group == null){
-            return new ResponseEntity<>(new NotFoundException("id" + id), HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(group,HttpStatus.OK);
+    @GetMapping("/group/{id}")
+    public Group findOne(@PathVariable Integer id){
+        return groupRepository.findOne(id);
+         //.orElseThrow(()-> new NotFoundException(id));
     }
 
-
+    @PostMapping("/group")
+    Group newGroup(@RequestBody Group group) {
+        return groupRepository.save(group);
+    }
 
 
 }
