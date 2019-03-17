@@ -19,10 +19,10 @@ public class GroupRESTController {
     GroupRepository groupRepository;
 
     @GetMapping("/group")
-    ResponseEntity<List<Group>> findAllGroup(){
+    public ResponseEntity<List<Group>> findAllGroup(){
         List<Group> groups = groupRepository.findAll();
         if(groups.isEmpty()){
-            return new ResponseEntity<>(groups,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(groups, HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(groups,HttpStatus.OK);
     }
@@ -37,13 +37,13 @@ public class GroupRESTController {
     }
 
     @PostMapping("/group")
-    ResponseEntity<? extends Serializable> newGroup(@RequestBody Group group) {
+    public ResponseEntity<Group> newGroup(@RequestBody Group group) {
         groupRepository.save(group);
         return new ResponseEntity<>(group, HttpStatus.CREATED);
     }
 
     @PutMapping("/group/{id}")
-    ResponseEntity<?> updateGroupe(@PathVariable Integer id,@RequestBody Group group){
+    public ResponseEntity<?> updateGroupe(@PathVariable Integer id,@RequestBody Group group){
         Group groupFromDb = groupRepository.findOne(id);
         if(groupFromDb == null){
             return new ResponseEntity<>(new NotFoundException(id), HttpStatus.NOT_FOUND);
@@ -54,7 +54,7 @@ public class GroupRESTController {
     }
 
     @DeleteMapping("/group/{id}")
-    ResponseEntity<?> deleteGroup(@PathVariable Integer id){
+    public ResponseEntity<?> deleteGroup(@PathVariable Integer id){
         Group group = groupRepository.findOne(id);
         if(group == null){
             return new ResponseEntity<>(new NotFoundException(id), HttpStatus.NOT_FOUND);
